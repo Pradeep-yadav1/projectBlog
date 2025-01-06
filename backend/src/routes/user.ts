@@ -1,9 +1,8 @@
 import { Hono } from "hono";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
-import { env } from "hono/adapter";
 import { decode, jwt, sign, verify } from "hono/jwt";
-import bcrypt from "bcryptjs";
+import { hashPassword ,verifyPassword} from "../utilis/hashPassword";
 
 
 export const userRouter = new Hono<{
@@ -13,19 +12,18 @@ export const userRouter = new Hono<{
     }
 }>();
 
-userRouter.post("/api/v1/signup", async (c) => {
+userRouter.post("/signup", async (c) => {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
   
     const body = await c.req.json();
-    const saltRounds = 10;
-    const hashPassword = await bcrypt.hash(body.password, saltRounds);
+    const hashedPassword = await hashPassword(body.password);
     const user = await prisma.user.create({
       data: {
         name: body.name,
         email: body.email,
-        password: hashPassword,
+        password: hashedPassword,
       },
     });
   
@@ -33,7 +31,8 @@ userRouter.post("/api/v1/signup", async (c) => {
     return c.json({ msg: "user created successfully", token: token });
   });
   
-  userRouter.post("/api/v1/signin", async (c) => {
+  userRouter.post("/signin", async (c) => {
+    try{
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
@@ -42,13 +41,12 @@ userRouter.post("/api/v1/signup", async (c) => {
     const user = await prisma.user.findUnique({
       where: {
         email: body.email,
-        password: body.password,
       },
     });
     if (!user) {
       return c.json({ msg: "User not found" }, 403);
     }
-    const isPasswordValid = await bcrypt.compare(body.password, user.password);
+    const isPasswordValid = await verifyPassword(user.password, body.password);
     if (!isPasswordValid) {
       c.status(411);
       return c.json({
@@ -60,5 +58,10 @@ userRouter.post("/api/v1/signup", async (c) => {
       msg: "Signin successfully",
       token: token,
     });
+  }catch(e){
+      console.error("error while signing");
+      return c.json({msg:"errr" },500)
+    
+  }
   });
   
