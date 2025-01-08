@@ -1,0 +1,1 @@
+export const BACKEND_URL =  " https://backend.pradeep20020102.workers.dev"
