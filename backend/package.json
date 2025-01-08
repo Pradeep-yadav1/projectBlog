@@ -6,15 +6,16 @@
   },
   "dependencies": {
     "@pradeep0123yadav/common": "^1.0.4",
-    "@prisma/client": "^6.1.0",
+    "@prisma/client": "^6.2.0",
     "@prisma/extension-accelerate": "^1.2.1",
     "@types/bcrypt": "^5.0.2",
     "@types/bcryptjs": "^2.4.6",
+    "cors": "^2.8.5",
     "hono": "^4.6.15",
-    "prisma": "^6.1.0"
+    "prisma": "^6.2.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241218.0",
-    "wrangler": "^3.96.0"
+    "wrangler": "^3.100.0"
   }
 }
