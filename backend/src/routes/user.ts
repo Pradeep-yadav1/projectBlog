@@ -33,7 +33,7 @@ userRouter.post("/signup", async (c) => {
     });
   
     const token = await sign({ id: user.id }, c.env.JWT_SECRET);
-    return c.json({ msg: "user created successfully", token: token });
+    return c.text( token );
   }catch(e){
     if(e instanceof Error){
       return c.json({msg:e.message},403)
@@ -68,10 +68,7 @@ userRouter.post("/signup", async (c) => {
       });
     }
     const token = await sign({ id: user.id }, c.env.JWT_SECRET);
-    return c.json({
-      msg: "Signin successfully",
-      token: token,
-    });
+    return c.text(token);
   }catch(e){
       console.error("error while signing");
       return c.json({msg:"errr" },500)
