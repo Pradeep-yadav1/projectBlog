@@ -131,14 +131,13 @@ blogRouter.get("/:id", async (c) => {
       datasourceUrl: c.env?.DATABASE_URL,
     }).$extends(withAccelerate());
 
-    const post = await prisma.post.findUnique({
+    const post = await prisma.post.findFirst({
       where: {
         id,
       },
       select:{
         title:true,
         content:true,
-        published:true,
         id:true,
         author:{
           select:{
@@ -148,7 +147,7 @@ blogRouter.get("/:id", async (c) => {
       }
     });
 
-    return c.json(post);
+    return c.json({post});
   } catch (e) {
     if(e instanceof Error){
       return c.json({ msg:e.message|| "internal server error" }, 500);
