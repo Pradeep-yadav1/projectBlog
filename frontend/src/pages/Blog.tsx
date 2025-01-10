@@ -1,10 +1,10 @@
-import { useBlogspecific } from "../hooks";
+import {  useBlogspecific } from "../hooks";
 
 import { SpecificBlog } from "../components/SpecificBlog";
 import { useParams } from "react-router-dom";
 
 export const Blog = () => {
-  const { id } = useParams<{id:string}>();
+  const { id } = useParams();
   const { loading, blog } = useBlogspecific({
     id: id || ""
   });
@@ -13,7 +13,7 @@ export const Blog = () => {
   }
   return (
     <div>
-      {/* <SpecificBlog blog={blog}/> */}
+      <SpecificBlog blog = {blog}/>
     </div>
   );
 };
