@@ -3,11 +3,11 @@ import { useEffect, useState } from "react"
 import { BACKEND_URL } from "../config";
 
  export interface BlogInputs{
-    "title":string,
-    "content":string,
-    "id":string,
+    "title":string | ""
+    "content":string | ""
+    "id":string | ""
     "author":{
-        "name":string
+        "name":string | ""
     }
 }
 
@@ -22,7 +22,7 @@ export const useBlogspecific = ({id} : {id:string}) => {
             }           
         })
          .then(response => {
-            setBlog(response.data);
+            setBlog(response.data.post);
             setLoading(false);
          })
     },[id] )
