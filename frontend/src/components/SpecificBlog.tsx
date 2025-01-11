@@ -10,7 +10,7 @@ export const SpecificBlog = ({ blog }: { blog: BlogInputs | undefined }) => {
     <div>
       <Appbar />
       <div className="grid grid-cols-12 px-20 mt-20">
-        <div className=" col-span-8">
+        <div className=" col-span-8 pr-4 m-2">
           <div className="text-5xl font-extrabold">{blog.title}</div>
           <div className="text-slate-500 pt-3">Posted on 10 Jan 2025</div>
           <div className="pt-4 text-lg">{blog.content}</div>
