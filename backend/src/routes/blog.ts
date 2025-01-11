@@ -1,4 +1,4 @@
-import { createBlogInput, specificBlogInput, updateBlogInput } from "@pradeep0123yadav/common";
+import { createBlogInput, specificBlogInput, updateBlogInput } from "@pradeep0123yadav/common"
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
@@ -50,13 +50,11 @@ blogRouter.post("/create", async (c) => {
         title: body.title,
         content: body.content,
         authorId: userId,
-        published: body.published,
       },
     });
-    return c.json({
-      msg: "post created successfully",
-      id: post.id,
-    });
+    return c.text(
+       post.id,
+    );
   } catch (e : unknown) {
     if(e instanceof Error){
       return c.json({ msg:e.message|| "internal server error" }, 500);
