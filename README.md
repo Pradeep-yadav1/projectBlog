@@ -27,11 +27,15 @@ A fully-featured Medium-like blog platform built with modern web development too
 
 ## Project Structure
 
-
-medium-like-blog/ ├── frontend/ # React application ├── backend/ # Cloudflare Workers code ├── prisma/ # Prisma schema and migrations ├── public/ # Static assets ├── scripts/ # Utility scripts └── README.md # Project documentation
-
-bash
-Copy code
+```
+medium-like-blog/
+├── frontend/         # React application
+├── backend/          # Cloudflare Workers code
+├── prisma/           # Prisma schema and migrations
+├── public/           # Static assets
+├── scripts/          # Utility scripts
+└── README.md         # Project documentation
+```
 
 ## Installation
 
@@ -39,72 +43,82 @@ Copy code
    ```bash
    git clone https://github.com/your-username/medium-like-blog.git
    cd medium-like-blog
-Install dependencies for the frontend:
+   ```
 
-bash
-Copy code
-cd frontend
-npm install
-Install dependencies for the backend:
+2. Install dependencies for the frontend:
+   ```bash
+   cd frontend
+   npm install
+   ```
 
-bash
-Copy code
-cd ../backend
-npm install
-Set up the PostgreSQL database:
+3. Install dependencies for the backend:
+   ```bash
+   cd ../backend
+   npm install
+   ```
 
-Create a new PostgreSQL database.
-Update the .env file in the backend/ directory with your database connection string.
-Apply Prisma migrations:
+4. Set up the PostgreSQL database:
+   - Create a new PostgreSQL database.
+   - Update the `.env` file in the `backend/` directory with your database connection string.
 
-bash
-Copy code
-npx prisma migrate deploy
-Start the development server:
+5. Apply Prisma migrations:
+   ```bash
+   npx prisma migrate deploy
+   ```
 
-Frontend:
-bash
-Copy code
-cd frontend
-npm start
-Backend:
-bash
-Copy code
-cd ../backend
-npm run dev
-Environment Variables
-Create a .env file in the backend/ directory with the following variables:
+6. Start the development server:
+   - Frontend:
+     ```bash
+     cd frontend
+     npm start
+     ```
+   - Backend:
+     ```bash
+     cd ../backend
+     npm run dev
+     ```
 
-makefile
-Copy code
+## Environment Variables
+
+Create a `.env` file in the `backend/` directory with the following variables:
+
+```
 DATABASE_URL=your-database-url
 JWT_SECRET=your-jwt-secret
-Usage
-Start the frontend and backend servers as described above.
-Access the application at http://localhost:3000.
-Create an account, log in, and start writing blog posts!
-Contributing
+```
+
+## Usage
+
+1. Start the frontend and backend servers as described above.
+2. Access the application .
+3. Create an account, log in, and start writing blog posts!
+
+## Contributing
+
 Contributions are welcome! Please follow these steps:
 
-Fork the repository.
-Create a new branch:
-bash
-Copy code
-git checkout -b feature-name
-Commit your changes:
-bash
-Copy code
-git commit -m "Add some feature"
-Push to the branch:
-bash
-Copy code
-git push origin feature-name
-Open a pull request.
-#Acknowledgments
--React
--Cloudflare Workers
--Hono
--Prisma
--PostgreSQL
--Zod
--JWT
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add some feature"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a pull request.
+
+## Acknowledgments
+
+- [React](https://reactjs.org/)
+- [Cloudflare Workers](https://workers.cloudflare.com/)
+- [Hono](https://hono.dev/)
+- [Prisma](https://www.prisma.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Zod](https://zod.dev/)
+- [JWT](https://jwt.io/)
+
